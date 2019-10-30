@@ -193,7 +193,7 @@ class Verify(object):
             self.key_id = value.split()[0]
             self.status = (('%s %s') % (key[:3], key[3:])).lower()
         else:
-            raise ValueError("Unknown status message: %r" % key)
+            print("Unknown status message: %r" % key)
 
 class ImportResult(object):
     "Handle status messages for --import"
@@ -499,7 +499,7 @@ class GPG(object):
     def _open_subprocess(self, args, passphrase=False):
         # Internal method: open a pipe to a GPG subprocess and return
         # the file objects for communicating with it.
-        cmd = [self.gpgbinary, '--status-fd 2 --no-tty']
+        cmd = [self.gpgbinary, '--status-fd 2']
         if self.gnupghome:
             cmd.append('--homedir "%s" ' % self.gnupghome)
         if self.keyring:

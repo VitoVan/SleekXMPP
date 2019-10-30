@@ -20,7 +20,7 @@ def _extract_data(data, kind):
     stripped = []
     begin_headers = False
     begin_data = False
-    for line in data.split('\n'):
+    for line in data.decode('utf-8').split('\n'):
         if not begin_headers and 'BEGIN PGP %s' % kind in line:
             begin_headers = True
             continue
